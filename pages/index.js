@@ -2,6 +2,7 @@
 
 import Head from "next/head";
 import Image from "next/image";
+import { useState } from "react";
 const bg = "/receipt.jpg";
 export default function Home() {
   return (
@@ -18,12 +19,12 @@ export default function Home() {
         </div>
         <div  className=' flex-col md:flex  justify-center  items-center  mx-auto w-full banner   flex-1  relative '>
         
-          <div className='    z-40  mr-20 p-3 '>
+          <div className='    z-40   p-3 '>
 
-            <p className=' text-5xl  md:text-7xl  font-medium   rounded  mt-8   text-black inline-block '>
+            <p className=' text-6xl  md:text-7xl  font-medium   rounded  mt-8   text-black inline-block '>
               E-RECEIPT
             </p>
-            <p className=' text-3xl  font-medium   rounded  block mt-2    text-green-800  '> TO YOUR PHONE</p>
+            <p className='  font-medium  text-6xl  md:text-7xl rounded  block mt-2    text-green-800  '> TO YOUR PHONE</p>
             <div className='mt-2'>
               <div className='  flex space-x-3    p-4  sm:text-lg   mt-3  rounded   '>
                <p className='text-gray-700 text-xl italic'>A plug and play solution that sends receipt to your clients phone</p>
@@ -51,23 +52,55 @@ export default function Home() {
   );
 }
 
-const Nav = () => {
+const HomeTab = () => {
+  const [show,setShow] = useState(false)
   return (
-    <div className='flex flex-col space-y-2 sm:space-y-0    sm:flex-row flex-wrap justify-between w-full  text-gray-700 text-sm sm:space-x-2'>
-      <div>
-        <p className='font-bold mb-3  text-gray-700'>HOME</p>
-        <div className='space-y-1 text-gray-700'>
+    <div>
+      <div className='flex items-end' >
+          <p  className='font-bold   text-gray-700'>HOME</p>
+         {!show && <svg onClick={() => setShow(!show)} xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 inline-block ml-3 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>}
+        {show &&  <svg onClick={() => setShow(!show)} xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 nline-block ml-3 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+        </svg>}
+      </div>
+  
+        {show &&<div className='space-y-1 mt-2 text-gray-700'>
           <p>ABOUT US</p>
           <p>OUR OBJECTIVE</p>
           <p>VISION</p>
           <p>MISSION</p>
           <p>WHY REGISTER WITH US</p>
-        </div>
+        </div>}
       </div>
-      <div>
+  )
+}
+
+const EReceiptTab = () => {
+  const [show,setShow] = useState(false)
+  return <div>
+      <div className='flex items-end' >
+          <p  className='font-bold   text-gray-700'>Our Partners</p>
+         {!show && <svg onClick={() => setShow(!show)} xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 inline-block ml-3 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>}
+        {show &&  <svg onClick={() => setShow(!show)} xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 nline-block ml-3 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+        </svg>}
+    </div>
+    {show && <div>
         <p className='font-bold mb-3  text-gray-700'>E-RECEIPT</p>
         <p>ITEMS RANGING 1 - 10</p>
-      </div>
+      </div>}
+  </div>
+}
+
+const Nav = () => {
+  return (
+    <div className='flex flex-col space-y-2 sm:space-y-0    sm:flex-row flex-wrap justify-between w-full  text-gray-700 text-sm sm:space-x-2'>
+     <HomeTab/>
+     <EReceiptTab/>
       <div>
         <p className='font-bold text-gray-700'>OUR PARTNERS</p>
       </div>
